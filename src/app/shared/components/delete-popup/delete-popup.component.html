@@ -1,0 +1,21 @@
+<div class="open-delete">
+    <span class="bg-modal" (click)="closeDelete()"></span>
+    <div class="delete-modal"  [ngStyle]="{'top': top,'left': left}"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete {{text}}</h5>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete the {{text}}?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn" (click)="closeDelete()">CANCEL</button>
+            <button type="button" class="btn" (click)="deleteData()">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

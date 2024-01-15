@@ -1,0 +1,32 @@
+<div class="container">
+    <app-innerpage-title [pageTitle]="updateText? 'Products':'Add Products'"></app-innerpage-title>
+
+    <div class="customer">
+        <h4 class="dsk-mode">
+            {{updateText? 'Products':'Add Products'}}
+        </h4>
+
+        <form [formGroup]="products">
+            <div class="form-group">
+                <label for="product-name" class="form-label">Name of product
+                <span *ngIf="products.controls.name?.status=='INVALID'">*</span>
+            </label>
+                <input required type="text" class="form-control" id="product-name" formControlName="name" >
+              </div>
+              <div class="form-group">
+                <label for="quantity" class="form-label">Quantity
+                <span *ngIf="products.controls.quantity.status=='INVALID'">*</span>
+            </label>
+                <input required  type="number" min=0 class="form-control" id="quantity" formControlName="quantity" >
+              </div>
+              <div class="position-bottom">
+              <div class="form-alert" *ngIf="fill && products.status=='INVALID'">
+                *Please fill up the mandatory fields correctly
+              </div>
+              <button type="submit" class="bttn bg_primary" (click)="getProductData()">{{updateText? 'UPDATE':'SAVE'}}</button>
+            </div>
+        </form>
+        
+    </div>
+</div>
+<app-confirm *ngIf="productAdded" [confirmed]="confirmed"></app-confirm>

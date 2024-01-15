@@ -1,0 +1,24 @@
+.m_title{
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 22 ;
+    left: 0;
+    .inner-page{
+        background: #fff;
+        padding: 43px 0 28px 24px;
+        display: flex;
+        align-items: center;
+        gap: 23px;
+        box-shadow: 0 0 40px 15px rgba(213, 204, 204, 0.15);
+       
+        .title{
+            color: #000;
+            font-family: "Trebuchet-ms";
+           font-size: 24px;
+           font-weight: 400;
+          line-height: 1.5;
+          text-transform: none;
+        }
+    }
+}

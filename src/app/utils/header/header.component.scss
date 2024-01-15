@@ -1,0 +1,90 @@
+header{
+    display: flex;
+    position: fixed;
+    height: 106px;
+    width: 100%;
+    background: #FFF;
+    justify-content: space-between;
+    padding: 24px 68px 24px 64px;
+    z-index: 20;
+    align-items: center;
+    .profile.showBt{
+        .profile-buttons{
+        transform: translateY(12%);
+        transition: all .4s ease;
+        }
+    }
+    .profile-buttons{
+        transform: translateY(-225%);
+    //    width: 193px;
+       padding: 16px 61px 16px 28px;
+       border-radius: 4px;
+       background: #FFF;
+       box-shadow: 9px 9px 18px 0px rgba(231, 215, 215, 0.15), -9px -9px 18px 0px rgba(142, 131, 131, 0.15);
+        z-index:20;
+        position: absolute;
+        right: 56px;
+
+            button{
+        display: block;
+        font-size: 18px;
+        font-family: 'Inter';
+      
+       }
+       .logout{
+        margin-top: 14px;
+       }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    ::ng-deep .custom-position{
+        right: 50% !important;
+        bottom: 1% !important;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .brand{
+        a{
+            img{
+                height: 50px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+  .login-profile{
+    width: 40px;
+    height: 40px;
+     border-radius: 25px;
+     font-size: 18px;
+     font-family: 'Inter';
+  }
+  header{
+    padding: 24px;
+  .profile-buttons{
+    padding: 28px 42px 25px 15px !important;
+    transform: translateX(225%);
+    right: 23px;
+    button{
+        display: flex;
+    }
+    span{
+        img{
+            padding: 0 12px 0 0;
+        }
+    }
+}
+  }
+}
+@media screen and (max-width: 598px) {
+    header{
+        height: auto;
+    }
+    .brand{
+        img{
+            height: 41px !important;
+            width: 128px;
+        }
+    }
+}

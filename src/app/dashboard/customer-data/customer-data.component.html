@@ -1,0 +1,88 @@
+<div class="listing-container tab-mode customer-data">
+  <app-innerpage-title [pageTitle]="'Customer Data'"></app-innerpage-title>
+
+  <div class="customer ">
+    
+    <div class="" *ngIf="listData.length>0">
+      <div class="date-filter">
+      <h4 class="dsk-mode">
+          Customer Listing
+      </h4>
+
+      <!-- <div class="date">
+        <button class="date-btn" (click)="openCalendar($event)">
+            <img src="../../../assets/images/date.png" alt="">
+            <span>Date</span>
+        </button>
+        
+        </div> -->
+        <div class="date">
+          <button class="date-btn"
+           
+          (click)="showDateForm($event,'filter')">
+              <img src="../../../assets/images/date.png" alt="">
+              <span>Date</span>
+          </button>
+          <span *ngIf="activeValue=='filter' && !date && !showDateModal &&showfilteringDate">
+            <span class="date-filt">
+              {{from}} to {{to}}
+            </span>
+            <span class="clear-filter" (click)="clearFilter()">
+              <img src="../../../assets/images/close.png">
+            </span>
+          </span>
+          
+          </div>
+      </div>
+      <div class="popup-message" *ngIf="deleted">
+        {{deleteSuccess }}
+        </div>
+
+      <!-- <app-datepicker *ngIf="date" (selDate)="getSelectedDate($event)" (cancelcal)="hidecal()" [calLeft]="calLeft" [calTop]="calTop"></app-datepicker> -->
+     
+    
+<app-grid [tableColumn]="tableColumn" [title]="'Customer'" [listData]="listData" (editData)="geteditData($event)" (deleteitem)="deleteSelectedItem($event)" #gridComponent></app-grid>
+</div>
+<div class="empty-list" *ngIf="listData.length==0">
+  No customers found
+</div>
+</div>
+</div>
+<div class="download-data">
+  <div *ngIf="showDateModal" class="modal-centered">
+    <span class="date-sel-popup" (click)="closeCal()"></span>
+      <div class="date-sel-content" [ngStyle]="{'top.px': dateModalHeight,'left.px': dateModalWidth}" (click)="calpos($event)">
+      <div  style="position: relative;">
+        <div class="date-sel">
+          <div class="date-sel-inner">
+            <div class="form-group">
+                <label class="form-label">From</label>
+                <button class="choose" (click)="getDate()">
+                   <span  *ngIf="!fromdateSelected;else date" > Choose Date</span>
+                        <ng-template #date class="choose">
+                            {{fromDate}}
+                        </ng-template>
+                    </button>
+                    <!-- {{fromDate}} -->
+              </div>
+              <div class="form-group">
+                <label class="form-label">To</label>
+                <button class="choose" (click)="getToDate()">
+                    <span  *ngIf="!todateSelected;else tdate" > Choose Date</span>
+                         <ng-template #tdate class="choose">
+                             {{toDate}}
+                         </ng-template>
+                     </button>
+                </div>
+          </div>
+                <button class="dl-bt" *ngIf="activeValue=='filter'" (click)="applyFilter()" [ngClass]="{'btActive': fromdateSelected && todateSelected}">Apply</button>
+        </div>
+        <app-datepicker class="fromdatecal" *ngIf="showcal" (selDateMonth)="getfromDate($event)" [calLeft]="0" [calTop]="0" #datepick (cancelcal)="hidecal()"></app-datepicker>
+        <app-datepicker class="todatecal" *ngIf="showcalto" (selDateMonth)="getLastDate($event)" [calLeft]="0" [calTop]="0" (cancelcal)="hidecal()"></app-datepicker>
+      </div>
+      </div>
+    
+  </div>
+
+ 
+</div>

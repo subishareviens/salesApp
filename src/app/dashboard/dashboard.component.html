@@ -1,0 +1,78 @@
+<app-header [roles]="roles"></app-header>
+<div class="dashboard">
+<div class="banner">
+    <div class="banner-text">
+        <h1>My Dashboard</h1>
+        <div class="banner-text_inner">{{roles}}</div>
+    </div>
+</div>
+
+<ul class="" *ngIf="roles=='sales executive'"
+>
+    <li><span class="mobile-mode">
+        <img src="../../assets/images/register.png">
+    </span><a class="tab-scale" routerLink="/dashboard/register-customer" routerLinkActive="active" >Register customers</a></li>
+    <li><span class="mobile-mode">
+        <img src="../../assets/images/customer-list.png">
+    </span><a class="tab-scale" routerLink="/dashboard/customer-data" routerLinkActive="active">Customer Data</a></li>
+    <li><span class="mobile-mode">
+        <img src="../../assets/images/sales.png">
+    </span><a class="tab-scale" routerLink="/dashboard/sales-data" routerLinkActive="active">Sales Data</a></li>
+</ul>
+<!-- login.role==masteradmin -->
+<ul class='' *ngIf="roles=='master'">
+    <li class="nav-li">
+            <div class="dashbd-nav "  >
+               <span [ngStyle]="{'color':activeExecutive? '#EA1B6B':'#000' }" class="executive  tab-scale"> 
+                <span class="mobile-mode">
+                <img src="../../assets/images/executives.png">
+                </span>
+                 Manage Executive</span>
+                <ul class="add_edit">
+                    <li><a class="" routerLink="/dashboard/add-executive" routerLinkActive="active">Add Executive</a></li>
+                    <li><a class="" routerLink="/dashboard/edit-executive" routerLinkActive="active">Edit Executive</a></li>
+                  </ul>
+            </div>
+   </li>
+    <li class="nav-li">
+        <div class="dashbd-nav view-cust"  >
+           
+            <span class="tab-scale dsk-mode" [ngStyle]="{'color':activeView? '#EA1B6B ':'#000' }">
+               
+                Monitor Customer Data</span>
+
+                <span class="mobile-mode">
+                    <span class="mobile-mode" style="padding-bottom: 5px;">
+                        <img src="../../assets/images/customer-data.png">
+                        </span>
+                        <a class="" routerLink="/dashboard/monitor-customer-data" routerLinkActive="active">View Customers</a>
+                    </span>
+            <ul class="dsk-mode view" >
+                <li class=""><span class="mobile-mode tab-scale">
+                    <img src="../../assets/images/customer-data.png">
+                    </span>
+                    <a class="" routerLink="/dashboard/monitor-customer-data" routerLinkActive="active">View Customers</a></li>
+              </ul>
+        </div>
+    </li>
+    <li class="nav-li">
+        <div class="dashbd-nav pd-list"  >
+            <span [ngStyle]="{'color':activeProduct? '#EA1B6B ':'#000' }" class="tab-scale">
+                <span class="mobile-mode">
+                    <img src="../../assets/images/Vector.png">
+                </span>
+                Products</span>
+            <ul class="" class="product-ul">
+                <li><a class="" routerLink="/dashboard/products"  routerLinkActive="active">Products</a></li>
+               
+                <li><a class="" routerLink="/dashboard/add-product" routerLinkActive="active">Add products</a></li>
+              </ul>
+        </div>
+    </li>
+</ul>
+
+
+</div>
+<app-confirm *ngIf="confirm" [confirmed]="confirmed"></app-confirm>
+<router-outlet></router-outlet>
+

@@ -1,0 +1,123 @@
+<div class="container">
+  <app-innerpage-title [pageTitle]="updateText ? 'Update employee' : ' Add Executive' " 
+  ></app-innerpage-title>
+    <div class="customer">
+      
+        <h4 class="dsk-mode">
+           {{ updateText ? 'Update employee' : ' Add Executive' }}
+        </h4>
+     
+        <form [formGroup]="employee">
+          <div class="">
+            <div class="form-group">
+              <label for="name" class="form-label">Name
+                <span *ngIf="employee.controls.name?.status=='INVALID'">*</span>
+            </label>
+              <input required type="text" class="form-control" id="name" formControlName="name" >
+            </div>
+             <div class="form-group">
+                <label for="empid" class="form-label">Employee ID 
+                  <span *ngIf="employee.controls.employId?.status=='INVALID'">*</span>
+              </label>
+                <input required type="text" class="form-control" id="empid" formControlName="employId" >
+              
+              </div>
+              <div class="form-alert" *ngIf="employeeExist">
+                The user with this empoloyee ID already exists
+              </div>
+              <div class="cod_num_otp">
+              <!-- <div class="form-group" [ngStyle]="{'width':verifiedOtp ? '100%'  :'82.5%'}"> -->
+                <div class="form-group" style="width:100%">
+                <label for="phnumber" class="form-label">Phone number
+                    <span *ngIf="employee.controls.phone?.status=='INVALID'">*</span>
+                </label>
+                <div class="ph-input">
+                <input required type="number" class="form-control" id="phnumber" formControlName="phone" 
+                
+                >
+                <!-- <div class="check" *ngIf="verifiedOtp">
+                    <img src="../../../assets/images/check.png">
+                </div> -->
+            </div>
+              </div>
+              
+              <!-- <button  [disabled]="employee.controls.phone.status=='INVALID'"
+              [ngClass]="{'disabled' : employee.controls.phone.status=='INVALID'}"
+              
+               class="bg_primary otp-btn"
+                (click)="sendOtp()"
+                [ngStyle]="{'display': verifiedOtp ? 'none' :'block'}"
+              >Send OTP</button> -->
+              
+              </div>
+              <div class="form-alert" *ngIf="userExist">
+                The user with this phone number already exists
+              </div>
+              <!-- <div class="ph-vefd" *ngIf="verifiedOtp">
+                Phone number verified 
+              </div> -->
+              <!-- <div class="cod_num_otp exe-otp" *ngIf="otpsend" [ngStyle]="{'display': verifiedOtp ? 'none' :'block'}">
+                <div class="form-group otp ">
+                  <label for="otp" class="form-label">Enter OTP <span *ngIf="employee.controls.otp?.status=='INVALID'">*</span></label>
+                 <div class="exe_ver-otp">
+                    <input required type="text" class="form-control" id="otp" formControlName="otp" >
+                    <button class="bg_primary otp-btn" (click)="verifyOtp()"
+                    
+                    >Verify OTP</button>
+                  
+                 </div> 
+                
+                </div>
+                <div class="form-alert" *ngIf="otpAlert">
+                  {{otpError}}
+                 </div>
+                
+              </div> -->
+              <div class="form-group" *ngIf="product">
+                <label for="name" class="form-label">Product allocation
+              </label>
+              <ul class="product-view">
+                <li *ngFor="let product of allocProduct; let i = index">
+                  <div class="close-product" (click)="removeProduct(i)">
+                    <img src="../../../assets/images/close.png">
+
+                  </div>
+                  <div class="total">
+                     <h6>Total quantity</h6>
+                     <div class="tot-qt">
+                      {{product.totalQuantity}}
+                     </div>
+                     <div class="pro-name">
+                     {{product.name}}
+                     </div>
+                  </div>
+                  <div class="left">
+              <div><span class="span-number">{{product.quantity}}</span><span class="span-text">Quantity left</span></div>
+
+                       <!-- {{product.quantity}} <span>Quantity left</span> -->
+                  </div>
+                </li>
+              </ul>
+              </div>
+            </div>
+              <div class="position-bottom">
+              <div class="form-alert" *ngIf="(fill && employee.status=='INVALID') || (editSelectedUser && employee.status=='INVALID')" >
+                *Please fill up the mandatory fields
+              </div>
+              <div  class="login-bt" >
+                <button type="submit" *ngIf="!updateText" class="bttn bg_primary" (click)="saveEmployee()">
+                  ADD EMPLOYEE
+                </button>
+                <button type="submit" *ngIf="updateText" class="bttn bg_primary" (click)="updateEmployee()">
+                  UPDATE
+                </button>
+               
+            </div>
+          </div>
+        </form>
+    </div>
+   
+</div>
+
+<app-confirm *ngIf="confirm" [confirmed]="confirmed"></app-confirm>
+

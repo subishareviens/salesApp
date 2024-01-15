@@ -1,0 +1,21 @@
+<!-- <div class="date">
+    <button class="date-btn" (click)="openCalendar()">
+        <img src="../../../assets/images/date.png" alt="">
+        <span>Date</span>
+    </button>
+    
+    </div> -->
+<div class="calendar">
+  <span class="cal-inner"  (click)="closeCalendar()"></span>
+    <div class="date-pick" >
+      <div class="pick-date" [ngStyle]="{'top.px': calTop,'left.px': calLeft}">
+      <ngb-datepicker (dateSelect)="onDateSelect($event)">
+        
+      </ngb-datepicker>
+        <div class="cal-button d-flex">
+            <button class="" (click)="closeCalendar()">Cancel</button>
+            <button class=" bg_primary" (click)="selectDte()">Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>

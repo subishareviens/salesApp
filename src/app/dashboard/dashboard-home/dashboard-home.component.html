@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="profile-home">
+        <h2>
+            Hello,{{userData?.name}},
+        </h2>
+        <div class="pro_text">See what’s happening in your store</div>
+        <ul class="list-datas" *ngIf="role=='sales executive'">
+            <li class="reviews">
+                <div class="home-data">
+                    <div class="rev-img">
+                    <img src="../../../assets/images/salestotal.png">
+                    </div>
+                    <div class="">
+                        <h3>{{totalSales}}</h3>
+                        <span>Total sales</span>
+                    </div>
+                </div>
+            </li>
+            <li class="reviews">
+                <div class="home-data">
+                    <div class="rev-img">
+                    <img src="../../../assets/images/Users.png">
+                    </div>
+                    <div class="">
+                        <h3>{{dailyCustomer}}</h3>
+                        <span>Daily customers</span>
+                    </div>
+                </div>
+            </li>
+            <li class="reviews">
+                <div class="home-data">
+                    <div class="rev-img">
+                    <img src="../../../assets/images/Product.png">
+                    </div>
+                    <div class="">
+                        <h3>{{totalProducts}}</h3>
+                        <span>No.of products</span>
+                    </div>
+                </div>
+            </li>
+            <li class="reviews">
+                <div class="home-data">
+                    <div class="rev-img">
+                    <img src="../../../assets/images/Users.png">
+                    </div>
+                    <div class="">
+                        <h3>{{listData?.length}}</h3>
+                        <span>Total customers</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

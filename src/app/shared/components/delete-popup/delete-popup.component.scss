@@ -1,0 +1,52 @@
+.open-delete{
+   
+    .bg-modal{
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.25);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index:10;
+    }
+.delete-modal{
+position: absolute;
+width: 40%;
+z-index: 12;
+// top: 68px;
+// right: 0;
+transform: translateX(-100%);
+&.last-delete-popup{
+  // transform: translateY(-100%);
+transform: translate(-100%,-100%);
+
+}
+
+.modal-content{
+    border-radius: 6px;
+    border: none;
+    padding: 12px 19px 0 23px;
+    *{
+      font-family: "Inter";
+    }
+    .modal-header{
+      border-bottom:none !important;
+      font-weight: 600 !important;
+      font-size: 20px !important;
+    }
+    .modal-footer{
+      border-top:none !important;
+      gap: 59px;
+      *{
+        font-size: 18px;
+        font-weight: 600;
+        color: #000;
+      }
+    }
+    .modal-body{
+      font-size: 18px;
+      padding: 0 0 7px 23px;
+    }
+  }
+}
+}

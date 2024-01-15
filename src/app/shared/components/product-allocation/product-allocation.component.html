@@ -1,0 +1,97 @@
+<div *ngIf="allocate" class="open-modal" >
+    <span class="bg-modal" 
+    
+    ></span>
+    <div class="app-modal test" 
+    >
+      <div class="modal-dialog" >
+        
+        <div class="modal-content">
+          <div class="product-close" (click)="closeProduct()">
+            <img src="../../../assets/images/close.png">
+          </div>
+            <form [formGroup]="allocated">
+                   <div class="d-flex prod_qty dsk-mode"><div class="form-group mb-l product" >
+                 
+                    <label for="product" class="form-label">Choose product
+                    </label>
+                </div>
+                <div class="form-group quantity">
+                    <label for="quantity" class="form-label">Select Qty
+                    </label>
+                    </div>
+                </div>
+            <div formArrayName="products">
+                <div *ngFor="let prod of products.controls;let i = index" class="product-loop">
+                  <div [formGroupName]="i">
+          <div class="d-flex prod_qty" class="product_in">
+            {{getValidity(i)}}
+            <div class="form-group mb-l product" 
+            >
+                <label for="product" class="form-label mobile-mode">Choose product
+                </label>
+                <select  required class="form-select" id="product" aria-label="" 
+                formControlName="id" [ngStyle]="{'border':(productStatus && chooseError)? '1px solid rgba(255, 0, 0, 0.59)':'transparent'}" (change)="selectProduct()">
+                    <option value="" disabled selected>Choose</option>
+                    <option *ngFor="let list of productList" [disabled]="list.disable" [value]="list._id">{{list.name}}</option>
+                    <!-- <option value="product2">product2</option> -->
+                  </select>
+                  
+            </div>
+            <div class="form-group quantity">
+                <label for="quantity" class="form-label mobile-mode">Select Qty
+                </label>
+                <div class="prod-qttt">
+                  <span>
+                    
+                   <input required type="number" min="1" class="form-control" id="quantity" formControlName="quantity">
+                  <span class="qt-bt">
+                    <button (click)="changeQuantity(allocated?.value?.products?.[i]?.quantity,'decrement',i)">-</button>{{allocated?.value?.products?.[i]?.quantity}}
+                    <button (click)="changeQuantity(allocated?.value?.products?.[i]?.quantity,'increment',i)">+</button>
+                  </span>
+                </span>
+                
+               
+                </div>
+               
+               
+                <!-- <input required type="number" class="form-control" id="quantity" formControlName="quantity" placeholder="Qty"> -->
+              </div>
+              <span class="close-dp" (click)="hideproductdp(i)" *ngIf="allocated.value.products.length>1">
+                <button>
+                  <img src="../../../assets/images/close-cl.png">
+                </button>
+                </span>
+              
+            </div>
+            <div class="form-alert"style="padding-bottom: 15px;
+            margin-top: -15px" *ngIf="getProductavailability(i)" >
+              Product quantity has ended please update</div>
+           
+          
+            <div class="form-alert"*ngIf="allocated.status=='INVALID'">
+              {{qtyError}}
+            </div>
+            </div>
+            </div>
+            <div [ngClass]="{'addflex':productMessage}" class="add-more">
+
+              <!-- <div class="form-alert" *ngIf="productMessage">
+                Product quantity has ended please update
+              </div> -->
+              <div class="add-pd-bt">
+                  <button class="add-product" (click)=" addProduct()">+ Add more product</button>
+                </div>
+            </div>
+            
+            </div>
+             
+          <div class="modal-footer">
+           <button class="bttn bg_primary" (click)="add()">Add</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  
+  </div>

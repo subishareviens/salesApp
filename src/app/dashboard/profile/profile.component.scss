@@ -1,0 +1,173 @@
+
+.view-profile{
+    margin-bottom: 100px;
+    input{
+        border: 1px solid rgba(51, 51, 51, 0.15);
+        background-color: #fff;
+        height: 48px;
+    }
+    *{
+        font-family: 'Inter' ;
+    }
+    .profile-pic{
+        padding: 23px;
+        margin-bottom: 33px;
+    }
+    .nav-item{
+        padding: .5rem 1rem;
+        button{
+            padding: 0;
+        }
+    }
+    .nav-tabs {
+      border-bottom:none;
+      margin-bottom: 27px;
+      .nav-link.active {
+      color: #EA1B6B;
+      background-color: transparent;
+      border-color: none;
+      border: none;
+      font-size: 18px;
+      border-bottom:2px solid #EA1B6B; ;
+    //   text-decoration: underline;
+      }
+      .nav-link{
+        color:#000;
+      }
+    }
+    .tab-content{
+      text-align: center;
+      .tab-pane{
+        padding: 39px 0;
+       *{
+        font-size: 20px;
+        color: #000;
+       }
+       .bg_primary{
+        margin-top: 29px;
+        color: #fff;
+       
+       }
+       button{
+        padding: 6px 41px;
+       }
+       .edit {
+        .form-group-bt{
+            button{
+                width:100%;
+            }
+        }
+        form{
+            padding: 0;
+        }
+       }
+       .form-group-bt{
+        display: flex;
+        gap: 28px;
+        button{
+          
+            width: 50%;
+           }
+           .can-ch-bt{
+            border: 1px solid rgba(51, 51, 51, 0.15);
+            margin-top: 29px;
+           }
+       }
+      
+      }
+    }
+    .change-pass{
+        width: 40%;
+        margin: 0 auto;
+        text-align: left;
+    }
+  }
+  @media screen and (max-width: 1450px) {
+    .container 
+    form {
+        padding: 50px 48px 59px 38px;
+    }
+    .form-group-bt{
+        button{
+        width: 45% !important;
+        padding: 6px 24px !important;
+        }
+    }
+    .edit{
+        button{
+            width: 100% !important;
+        }
+    }
+
+  }
+  @media screen and (max-width: 1200px) {
+.view-profile{
+    .nav-tabs{
+        margin-top: 12px;
+        justify-content: center;
+    }
+    .customer{
+        padding-top: 0;
+    }
+}
+
+  }
+  @media screen and (max-width: 1024px) {
+    .container form {
+        padding: 50px 4px 59px 3px;
+    }
+    .view-profile{
+        .change-pass{
+            width:50%;
+        }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .customer{
+        box-shadow: none;
+    }
+    .buttons{
+        margin-top: 53px !important; 
+        display: flex;
+        width: 60%;
+        margin: auto;
+        flex-direction: column;
+        button{
+            // padding: 8px 76px !important;
+        }
+    }
+    
+    .bg_dark{
+        background-color:#1A1A1A;
+        color: #fff !important;
+        margin-top: 12px;
+    }
+    .view-profile{
+        .profile-pic{
+            width: 98.98px;
+            border-radius: 60px;
+        }
+        .tab-content{
+            .tab-pane{
+                padding:112px 31px 39px 31px;
+                .form-group-bt{
+                    button{
+                        width: 100% !important;
+                        padding: 14px 0 !important;
+                    }
+                }
+            }
+        }
+        .nav-tabs{
+            margin: 0;
+            .nav-link.active{
+                background-color: black;
+                border-bottom: none;
+            }
+        }
+        .change-pass{
+            width: 100%;
+        }
+    }
+   
+  }

@@ -1,0 +1,144 @@
+<div class="listing-container all-products">
+  <app-innerpage-title ></app-innerpage-title>
+
+    <div class="customer product-data">
+      
+      <div class="mobile-mode">
+        <div class="search-product">
+          <button>
+            <span>
+              <img src="../../../assets/images/Search.png">
+            </span>
+            <input type="text" placeholder="Search" [ngModel]="searchText" (ngModelChange)="searchProduct($event)">
+
+          </button>
+        </div>
+      </div>
+      <div class="" *ngIf="products?.length>0">
+        <h4 class="">
+            Products
+        </h4>
+      
+        <div style="position: relative;" class="slider-carousel">
+           <owl-carousel-o [options]="customOptions" class="product-view">
+
+            <ng-container *ngFor="let slide of products" >
+              <ng-template carouselSlide [id]="slide.id">
+              <div class="product-detail">
+              <div class="total">
+               <h6>Total quantity</h6>
+               <div class="tot-qt">
+                {{slide.totalProducts}}
+               </div>
+               <div class="pro-name">
+                {{slide.name}}
+               </div>
+            </div>
+            <div class="left">
+              <div><span class="span-number">{{slide.quantity}}</span><span class="span-text">Quantity left</span></div>
+               <div class="product-bt">
+                <button type="button" (click)="deleteProduct(slide._id)">
+                  <img src="../../../assets/images/delete.png">
+                </button>
+               <button  type="button" (click)="editProduct(slide)"><img src="../../../assets/images/pencil.png"></button>
+              </div>
+          </div>
+          </div>  
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+       
+        </div>
+
+        <div class="product-view mobile-mode " *ngIf="!viewAll">
+          <div class="product-detail" >
+            <div class="total">
+             <h6>Total quantity</h6>
+             <div class="tot-qt">
+              {{products[0].totalProducts}}
+             </div>
+             <div class="pro-name">
+              {{products[0].name}}
+             </div>
+          </div>
+          <div class="left">
+            <div><span class="span-number">{{products[0].quantity}}</span><span class="span-text">Quantity left</span></div>
+             <div class="product-bt">
+              <button type="button" (click)="deleteProduct(products[0]._id)">
+                <img src="../../../assets/images/delete.png">
+              </button>
+             <button  type="button" (click)="editProduct(products[0])"><img src="../../../assets/images/pencil.png"></button>
+            </div>
+        </div>
+        </div> 
+        </div>
+        <!-- <div class="view-btn">
+          <button></button>
+        </div> -->
+        <button (click)="showAllProducts()"   *ngIf="!viewAll" class="mobile-mode view-btn" >View all</button>
+        <div class="product-listing" [ngClass]="viewAll ? 'show-products' :'product-listing'">
+          <div class="product-view">
+            <div class="product-detail" *ngFor="let slide of products">
+              <div class="total">
+               <h6>Total quantity</h6>
+               <div class="tot-qt">
+                {{slide.totalProducts}}
+               </div>
+               <div class="pro-name">
+                {{slide.name}}
+               </div>
+            </div>
+            <div class="left">
+              <div><span class="span-number">{{slide.quantity}}</span><span class="span-text">Quantity left</span></div>
+               <div class="product-bt">
+                <button type="button" (click)="deleteProduct(slide._id)">
+                  <img src="../../../assets/images/delete.png">
+                </button>
+               <button  type="button" (click)="editProduct(slide)"><img src="../../../assets/images/pencil.png"></button>
+              </div>
+          </div>
+          </div> 
+          </div>
+        </div>
+        <app-delete-popup *ngIf="openDelete" [top]="top" [left]="left" [text]="text" class="popup-position"
+        [dataId]="productId" (deleteItem)="deleteSelectProduct($event)" (cancelDelete)="hideDeletePopup()"
+        ></app-delete-popup>
+        <div class="pro-altn">
+          <h4>
+            Product allocation
+        </h4>
+        <div class="scroll-content">
+        <div class="" *ngFor="let data of executiveData;let i=index">
+          <h6 class="employee">
+           {{i+1}}. {{data.name}}
+          </h6>
+      
+        <div class="product-view">
+          <div class="product-detail" *ngFor="let product of data.allocatedProducts" style="margin-bottom: 10px;">
+            <div class="total"> 
+             <h6>Total quantity</h6>
+             <div class="tot-qt">
+              {{product.totalQuantity }}
+             </div>
+             <div class="pro-name">
+              {{product.name}}
+             </div>
+          </div>
+          <div class="left">
+            <div><span class="span-number">{{product.quantity}}</span><span class="span-text">Quantity left</span></div>
+            
+        </div>
+        </div> 
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="empty-list" *ngIf="products?.length==0">
+      No products available
+    </div>
+</div>
+
+</div>
+
+

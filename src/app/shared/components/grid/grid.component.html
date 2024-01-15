@@ -1,0 +1,141 @@
+<div class="list-data list-desk" >
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col count">No</th>
+        <th scope="col" *ngFor="let column of tableColumn">{{column.name}}</th>
+        
+        <th scope="col">Actions</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr *ngFor="let data of listData  | paginate: { itemsPerPage: pagesize, currentPage: page };let i = index; let last=last">
+        <th scope="row">{{(pagesize*(page-1))+i+1}}</th>
+        <td class="cus-name" *ngFor="let column of tableColumn">
+          <div class="name" *ngIf="column.field">
+            {{data[column.field]}}
+            <br>
+            <div class="name" *ngIf="column.field3">
+              {{data[column.field3]}}
+            </div>
+            <!-- data.name -->
+          </div>
+          <div class="name" *ngIf="column.productLoop">
+            <div class="" *ngFor="let item of data.products">
+              <div class="">
+                {{item.name}} <span>(qty:{{item.quantity}})</span>
+              </div>
+              
+            </div>
+          </div>
+          <span *ngIf="column?.field2">{{data[column.field2] | date: 'dd-MM-yyyy'}}</span>
+          <!-- data.date -->
+          <button *ngIf="column?.eventButton" class="event-button" (click)="showEvent(data)">{{column.eventButton}}</button>
+        </td>
+        
+        <td>
+          <div class="actions">
+            <div class="edit">
+              <button (click)="editform(data)">
+                <img src="../../../assets/images/pen.png" alt="">
+              </button>
+            </div>
+            <div class="delete">
+              <button type="button" class="btn bg_primary" (click)="showDelete($event , data._id,last)">
+                <img src="../../../assets/images/Trash Bin.png" alt="">
+                
+              </button>
+              
+            </div>
+          </div>
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+  
+  <pagination-controls (pageChange)="page = $event"  previousLabel=""
+  nextLabel=""class="grid-pagination"></pagination-controls>
+</div>
+<!-- customer listing for tab -->
+<div class="list-data list-data-tab" >
+  <div class="">
+    <div scope="col" *ngFor="let column of tableColumn"></div>
+    <div>
+      <div class="data_list" *ngFor="let data of listData ;let i = index; let last=last">
+        <div class="data-wrap">
+          <div class="cus-name" *ngFor="let column of tableColumn">
+            <label *ngIf="column.label"> 
+              {{column.label}} -
+            </label>
+            <span *ngIf="column.image"
+            ><img  src={{column.image}}></span> 
+            <div class="name {{column.class}}" *ngIf="column.field">{{data[column.field]}}</div>
+            <div *ngIf="column.field3" class="name {{column.class}}">{{data[column.field3]}}</div>
+              
+              <div class="name pd-loop {{column.class}}" *ngIf="column.productLoop">
+                <div class="" *ngFor="let item of data.products">
+                  <div class="">
+                    {{item.name}} <span class="qnty">(qty:{{item.quantity}})</span>
+                  </div>
+                  
+                </div>
+              </div>
+            <span class="created-date " *ngIf="column?.field2">{{data[column.field2] | date: 'dd-MM-yyyy'}}</span>
+            <button *ngIf="column?.eventButton" class="event-button" (click)="showEvent(data)">{{column.eventButton}}</button>
+          </div>
+        </div>
+        <div>
+          <div class="actions">
+            <div class="edit">
+              <button (click)="editform(data)">
+                <img src="../../../assets/images/pen.png" alt="">
+              </button>
+            </div>
+            <div class="delete">
+              <button type="button" class="btn bg_primary" (click)="showDelete($event , data._id,last)">
+                <img src="../../../assets/images/Trash Bin.png" alt="">
+                
+              </button>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      
+    </div>
+  </div>
+  <!-- <div class="" *ngIf="!(listData.data.length > 0)">
+    List is empty
+  </div> -->
+  <pagination-controls (pageChange)="page = $event"  previousLabel=""
+  nextLabel=""class="grid-pagination"></pagination-controls>
+</div>
+<!-- delete modal -->
+<div *ngIf="deleteOpen" class="open-delete" >
+  <span class="bg-modal" (click)="closeDelete()"></span>
+  <div class="delete-modal" [ngStyle]="{'top.px': modalheight,'left.px': modalwidth}" [ngClass]="{'last-delete-popup':lastItem}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete {{title}}</h5>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this {{title}} ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" (click)="closeDelete()">CANCEL</button>
+          <button type="button" class="btn" (click)="deleteData()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<app-pagination></app-pagination>
+

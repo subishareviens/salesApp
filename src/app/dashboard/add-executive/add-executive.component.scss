@@ -1,0 +1,47 @@
+// .cod_num_otp.exe-otp{
+//     margin-top: 30px;
+//     display: flex;
+//     .form-group{
+//         width: 100% !important;
+//         display: flex;
+//         gap:2.5%;
+//         label{
+//             white-space: nowrap;
+//         }
+//         .exe_ver-otp{
+//             display: flex;
+//             width: 100%;
+//             position: relative;
+//         }
+//         .otp-btn{
+//            position: absolute;
+//            right: 0;
+//            height: 43px;
+//            right: 5px;
+//            top: 5px;
+//         }
+//      }
+//  }
+ .cod_num_otp{
+    .form-group{
+        width: 82.5%;
+    }
+ }
+
+ .product-view{
+   gap:3%;
+   
+      .left{
+         display: block !important;
+      }
+   li{
+      margin-bottom: 30px;
+   }
+ }
+
+ @media screen and (max-width: 1200px) {
+   .customer{
+      margin-top: 48px;
+   }
+
+ }

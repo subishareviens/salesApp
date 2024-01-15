@@ -1,0 +1,15 @@
+ul.pagination{
+    float: right;
+    li{
+        a{
+            border:none;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+    .page-item.active .page-link {
+        background-color: #F12F64;
+        color: #fff !important;
+        border-radius: 2px;
+    }
+}

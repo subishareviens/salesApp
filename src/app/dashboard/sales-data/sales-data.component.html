@@ -1,0 +1,31 @@
+
+<div class="listing-container">
+  <div class="customer product-data sales-data">
+    <div class="empty-list" *ngIf="productData.allocatedProducts.length==0">
+      No products available
+    </div>
+    <app-innerpage-title [pageTitle]="'Sales data'"></app-innerpage-title>
+
+    <div class="" *ngIf="productData.allocatedProducts.length>0">
+      <ul class="product-view">
+        <li *ngFor="let product of productData.allocatedProducts">
+          <div class="total">
+             <h6>Total quantity</h6>
+             <div class="tot-qt">
+              {{product.totalQuantity}}
+             </div>
+             <div class="pro-name">
+              {{product.name}}
+
+             </div>
+          </div>
+          <div class="left">
+              <div><span class="span-number">{{product.quantity}}
+                
+              </span><span class="span-text">Quantity left</span></div>
+          </div>
+        </li>
+      </ul>
+  </div>
+</div>
+</div>

@@ -1,0 +1,176 @@
+<div class="container">
+    <div class="customer">
+        <h4 class="dsk-mode">
+         {{ updateText ? 'Update' : 'Add a Customer' }} 
+        </h4>
+      <app-innerpage-title [pageTitle]="updateText ? 'Update' : 'Add a Customer'"></app-innerpage-title>
+        
+            <form [formGroup]="customer">
+              <div class="" style="color: #4A00A2;font-size: 20px;"  *ngIf='resetcust'>(
+                <button class="resetcust"style
+                 (click)="resetCustomer()"> Clear </button>
+                 customer )
+                </div>
+                <div class="form-group">
+                  <label for="name" class="form-label">Name<span *ngIf="customer.controls.name?.status=='INVALID'">*</span></label>
+                  <input required type="text" class="form-control" id="name" formControlName="name" >
+                </div>
+                
+                <div class="form-group">
+                  <label for="address1" class="form-label">Address line 1<span *ngIf="customer.controls.address1?.status=='INVALID'">*</span></label>
+                  <textarea class="form-control" id="address1" rows="3" formControlName="address1"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="address2" class="form-label">Address line 2</label>
+                  <textarea class="form-control" id="address2" rows="3" formControlName="address2"></textarea>
+                </div>
+                  <div class="cod_num_otp">
+                  <div class="form-group" style="width:50%;">
+                    <label for="pincode" class="form-label">Pincode<span *ngIf="customer.controls.pin?.status=='INVALID'">*</span></label>
+                    <input required  type="number" class="form-control" id="pincode" formControlName="pin" >
+                  </div>
+                  <div class="form-group" style="width:50%;">
+                    <label for="phnumber" class="form-label">Phone number<span *ngIf="customer.controls.phone?.status=='INVALID'">*</span></label>
+                    <div class="ph-input">
+                    <input required type="number" class="form-control" id="phnumber" formControlName="phone" >
+                    <div class="check" *ngIf="verifiedOtp && !registerError">
+                      <img src="../../../assets/images/check.png">
+                  </div>
+                  <div class="check change" *ngIf="editSelectedCustomer && hideChange">
+                    <div><img src="../../../assets/images/whitecheck.png"><span>verified</span></div><button (click)="changeNum()">Change</button>
+                  </div>
+                    </div>
+                    <div class="form-alert" *ngIf="registerError " style="padding-top: 8px;">
+                      *  This phone number is already registered ,<span class="view-details"  (click)="viewCustomer()">view details</span>
+                     
+                    </div>
+                     <!-- <button  [disabled]="customer.controls.phone.status=='INVALID'"
+              [ngClass]="{'disabled' : customer.controls.phone.status=='INVALID'}"
+              
+               class="bg_primary otp-btn mobile-mode"
+                (click)="sendOtp()"
+                [ngStyle]="{'display': verifiedOtp ? 'none' :'block'}"
+                *ngIf="updatePhone != customer.value.phone && !resetcust && !registerError && !hideChange"
+              >Send OTP</button> -->
+                  </div>
+                  <button  [disabled]="customer.controls.phone.status=='INVALID'"
+              [ngClass]="{'disabled' : customer.controls.phone.status=='INVALID'}"
+              
+               class="bg_primary otp-btn mob-send"
+                (click)="sendOtp()"
+                [ngStyle]="{'display': verifiedOtp ? 'none' :'block'}"
+                *ngIf="updatePhone != customer.value.phone && !resetcust && !registerError && !hideChange"
+              >Send OTP</button>
+                </div>
+                <div class="ph-vefd" *ngIf="(verifiedOtp && !registerError) ">
+                  Phone number verified 
+                </div>
+                <div class="cod_num_otp exe-otp" *ngIf="otpsend && !registerError && !resetcust" [ngStyle]="{'display': verifiedOtp ? 'none' :'block'}">
+                  <div class="form-group otp ">
+                    <label for="otp" class="form-label">Enter OTP
+                      </label>
+                   <div class="exe_ver-otp" [ngStyle]="{'border':otpAlert? '1px solid rgba(255, 0, 0, 0.59)':'transparent'}">
+                      <input required type="text" class="form-control" id="otp" formControlName="otp" >
+                      <button class="bg_primary otp-btn" (click)="verifyOtp()"
+                    
+                    >Verify OTP</button>
+                   </div> 
+                  </div>
+                  <div class="otp-send">
+                    <div class="otp-error">
+                      Didn’t receive the OTP ?
+                    </div>
+                    <button>
+                   <span class="resend" *ngIf="resent" (click)="otpResend()">Resend OTP</span><span style="color: #333" *ngIf="!resent">Resend OTP in {{timeLeft}}sec </span>
+                    </button>
+                   </div>
+                </div>
+              
+                <div class="form-group">
+                    <label for="email" class="form-label">Email id(optional)</label>
+                    <input type="email" class="form-control" id="email" formControlName="email" >
+                  </div>
+                  <div >
+                  <div formArrayName="products">
+                    <div *ngFor="let prod of products.controls;let i = index">
+                      <div [formGroupName]="i">
+                        <!--  -->
+                        <span [ngClass]="{'unclick-choose' : disable}"> </span>
+                  <div class="d-flex prod_qty " [ngClass]="{'disablechoose' : disable}">
+                    <div class="form-group mb-l product" 
+                    >{{getValidity(i)}}
+                        <label for="product" class="form-label">Choose product<span *ngIf="productStatus">*</span>
+                          <!-- <span *ngIf="customer.controls.products?.status=='INVALID'">*</span> -->
+                        </label>
+                        
+                        <select  required class="form-select" id="product" aria-label="" formControlName="id" (change)="selectProduct()">
+                            <option value="" disabled  selected >Choose</option>
+                            <option *ngFor="let data of profileData" [disabled]="data.disable" [value]="data.id">{{data.name}}</option>
+                          </select>
+                          
+                    </div>
+                    <span class="close-dp" (click)="hideproductdp(i)" *ngIf="customer.value.products.length>1 && !editSelectedCustomer">
+                      <button>
+                      <img src="../../../assets/images/close-cl.png">
+                    </button>
+                    </span>
+                    
+                    <div class="form-group quantity">
+                     
+                        <label for="quantity" class="form-label">Select Qty
+                          <!-- <span *ngIf="customer.controls.quantity?.pristine==false">*</span> -->
+                        </label>
+                        <div class="prod-qttt">
+                          <span [ngClass]="{'unclick-qty' : disable}">   </span>
+                          <span>
+                           <input required type="number" min="1"class="form-control" id="quantity" formControlName="quantity">
+
+                          </span>
+                          <span class="qt-bt">
+                            <button (click)="changeQuantity(customer?.value?.products?.[i]?.quantity,'decrement',i)">-</button>{{customer?.value?.products?.[i]?.quantity}}
+                            <button (click)="changeQuantity(customer?.value?.products?.[i]?.quantity,'increment',i)">+</button>
+                          </span>
+                        </div>
+                        <!-- <span class="form-alert" *ngIf="customer?.value?.products?.[i]?.quantity.status=='INVALID'">Enter valid quantity</span> -->
+                        <!-- <input required type="number" class="form-control" id="quantity" formControlName="quantity" placeholder="Qty"> -->
+                      </div>
+                   
+                    </div>
+                    <div class="form-alert" style="text-align: right;" *ngIf="getProductavailability(i) as message" >{{message}}</div>
+                    <!--  -->
+                  </div>
+                  
+                 
+                    </div>
+                  </div>
+                    <!-- <div class="form-alert" *ngIf="productStatus &&fill">
+                      Choose Product
+                    </div> -->
+                  <div class="form-alert" *ngIf="qtyError">
+                    {{errmsg}}
+                  </div>
+                  <div class="add-pd-bt" *ngIf="!editSelectedCustomer&&!registeredCustomer">
+                  <button class="add-product" (click)=" addProduct()">+ Add more product</button>
+                </div>
+              </div>
+              <span [ngClass]="{'unclick-choose' : disable}"> </span>
+              <div class="form-group" *ngIf="editSelectedCustomer">
+                <label for="name" class="form-label" >Executive ID<span *ngIf="customer.controls.name?.status=='INVALID'">*</span></label>
+                <input required type="text" class="form-control" id="name" formControlName="employId" >
+              </div>
+                <div class="form-alert" *ngIf="fill && customer.status=='INVALID' ">
+                  *Please fill up the mandatory fields
+                </div>
+                
+                  <div  class="login-bt" *ngIf="!resetcust">
+                <button type="submit" class="bttn bg_primary" (click)="getCustomerData()">
+                  {{ updateText ? 'UPDATE CUSTOMER DETAILS' : 'CONFIRM CUSTOMER' }}</button>
+              
+            </div>
+            </form>
+            <div class="popup-message" *ngIf="editSelectedCustomer && confirm">
+              </div>
+    </div>
+    
+</div>
+<app-confirm *ngIf="confirm" [confirmed]="confirmed"></app-confirm>

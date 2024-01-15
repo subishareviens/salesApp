@@ -1,0 +1,30 @@
+
+      <div class="login-otp">
+          <div class="login-header">
+            <h2> Verification</h2>
+            <span>OTP send to {{login.phone}}</span>
+          </div>
+          <form [formGroup]="otpNum">
+          <ul>
+            <li>
+              <input type="text" #one maxlength="1" formControlName="num1" (keyup)="getOtpNum(this,two)">
+            </li>
+              
+              <li><input type="text" #two maxlength="1" formControlName="num2" (keyup)="getOtpNum(this,three)"></li>
+            <li><input type="text" #three maxlength="1" formControlName="num3" (keyup)="getOtpNum(this,four)"></li>
+            <li><input type="text" #four maxlength="1" formControlName="num4" (keyup)="getOtpVerify()"></li>
+
+          </ul>
+          <div class="form-alert error-message" *ngIf="response">
+            {{message}} please try again
+          </div>
+        </form>
+          <div class="otp-error" >
+            Didn’t receive the OTP ?
+          </div>
+          <button  (click)="resend()">
+         <span class="resend" *ngIf="resent" (click)="otpResend()">Resend OTP</span><span *ngIf="!resent">Resend OTP in {{timeLeft}}sec </span>
+          </button>
+          
+      </div>
+  

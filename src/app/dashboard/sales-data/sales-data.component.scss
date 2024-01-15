@@ -1,0 +1,46 @@
+.sales-data{
+    ul{
+        li{
+            width: 23%;
+        }
+    }
+}
+.listing-container{
+    width:94%
+}
+@media screen and (max-width: 1600px) {
+    ul{
+        gap: 30px;
+        li{
+            width: 31% !important;
+        }
+    }
+}
+@media screen and (max-width: 1200px) {
+  .customer{
+    box-shadow: none;
+  
+  }
+  .product-data ul{
+    padding: 0 !important;
+}
+}
+@media screen and (max-width: 1024px) {
+    .sales-data{
+        ul{
+            gap: 25px;
+            li{
+                width: 48% !important;
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+    .sales-data{
+        ul{
+            li{
+                width: 100% !important;
+            }
+        }
+    }
+}

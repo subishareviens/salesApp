@@ -1,0 +1,56 @@
+
+
+
+//calendar
+
+:host ::ng-deep .small{
+    padding: 20px !important;
+    }
+    
+    :host ::ng-deep .ngb-dp-weekdays {
+    background-color: #fff !important;
+    }
+    :host ::ng-deep .small::first-letter{
+    display: none !important;
+    
+    }
+    :host ::ng-deep .ngb-dp-weekday{
+    color: #EA1B6B;
+    font-size: 20px;
+    width: 50px;
+    font-style: normal;
+    font-family: "Robotto";
+    }
+    :host ::ng-deep .ngb-dp-arrow{
+    background-color: #fff;
+    padding: 0 20px;
+    .btn-link{
+      color:#000;
+    }
+    }
+    :host ::ng-deep .ngb-dp-header{
+    background-color: #fff;
+    padding-top: 40px;
+    font-family: "Robotto";
+    }
+    :host ::ng-deep .ngb-dp-week{
+    padding: 5px;
+    } 
+    :host ::ng-deep .ngb-dp-day{
+    padding: 0 7px !important;
+    font-size: 18px !important;
+    width: 50px !important;
+    font-weight: 500;
+    font-family: "Robotto";
+    }
+    :host ::ng-deep .ngb-dp-months{
+    // width: 400px;
+    padding: 20px 63px 35px 63px;
+    }
+    :host ::ng-deep .form-select{
+    border:none;
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    }
+    

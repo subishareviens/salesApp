@@ -1,0 +1,103 @@
+
+<div class="container view-profile profile">
+ 
+  <ul class="nav nav-tabs mobile-mode" id="myTab" role="tablist">
+    <li *ngIf="!showTab && !edit" class="nav-item inner-page" role="presentation"><span (click)="navigateRoute()"><img src="../../../assets/images/Arrow-Left.png"></span>
+      <button class="nav-link title"  id="profile-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
+    </li>
+    <li *ngIf="showTab && !edit" class="nav-item inner-page" role="presentation"><span  id="profile-tab" data-bs-toggle="tab" data-bs-target="#home" (click)="navigateRoute()"><img src="../../../assets/images/Arrow-Left.png"></span>
+      <button class="nav-link title" id="password-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Change password</button>
+    </li>
+    <li *ngIf="edit" class=" inner-page"><span id="profile-tab" data-bs-toggle="tab" data-bs-target="#home" (click)="navigateRoute()"><img src="../../../assets/images/Arrow-Left.png"></span>
+      <button class="nav-link title" id="password-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Edit profile</button>
+    </li>
+  </ul>
+
+    <ul class="nav nav-tabs dsk-mode" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active profile-tab1"  id="profile-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Change password</button>
+        </li>
+        
+      </ul>
+    <div class="customer" *ngIf="userData">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="profile-tab">
+              
+        <img class="profile-pic" src="../../../assets/images/profile.png" alt="">
+        <div class="view" *ngIf="view">
+          <div class="">
+            <label>Email:  </label><span>
+                <!-- masteradmin@gmail.comggg -->
+                {{userData.email}}
+            </span>
+            </div>
+            <div class="">
+            <label>Password:  </label><span>
+                <!-- masteradmin -->
+                ***********
+            </span>
+            
+          </div>
+          <div class="buttons">
+            <button class="bg_primary" (click)="editProfile()">Edit profile</button>
+            <!-- <button class="bg_dark mobile-mode" (click)="openPassword()">Change Password</button> -->
+          
+            <button class="nav-link bg_dark mobile-mode"  (click)="openPassword()">Change password</button>
+          </div>
+          </div>
+          <div class="edit change-pass" *ngIf="edit" >
+            <form [formGroup]="updateProfile">
+                <div class="form-group">
+                  <label for="name" class="form-label">Name
+                </label>
+                  <input type="text" class="form-control" id="name" formControlName="name" >
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email
+                    </label>
+                    <input type="text" class="form-control" id="email" formControlName="email" >
+                  </div>
+                  <div class="form-group form-group-bt">
+                    <button class="bg_primary" (click)="saveProfile()">SAVE</button>
+
+                  </div>
+            </form>
+          </div>
+            </div>
+            <div class="tab-pane change-pass fade"  id="profile" role="tabpanel" aria-labelledby="password-tab">
+            <!-- <div class="tab-pane change-pass fade" id="profile" role="tabpanel" aria-labelledby="password-tab"> -->
+                
+            <form [formGroup]="profile">
+                <div class="form-group">
+                  <label for="New password" class="form-label">New password
+                </label>
+                <div class="show-password">
+                   <input type="{{showpassword ? 'password':'text'}}" class="form-control" id="New password" formControlName="password">
+                   <span (click)="showPassword()">
+                     <img src="{{profile.controls.password.value ? '../../../assets/images/eye-off.png' : '../../../assets/images/eyeblur.png'}}" >
+                   </span>
+                  </div>
+                  </div>
+                <div class="form-group">
+                    <label for="confirmpassword" class="form-label">Confirm new password
+                    </label>
+                    <div class="show-password" [ngStyle]="{'border':mismatch? '1px solid rgba(255, 0, 0, 0.59)':'transparent'}">
+                      <input type="{{shownewpassword ? 'password':'text'}}" class="form-control" id="confirmpassword" formControlName="confirmpassword">
+                      <span (click)="shownewPassword()">
+                        <img src="{{profile.controls.confirmpassword.value ? '../../../assets/images/eye-off.png' : '../../../assets/images/eyeblur.png'}}" >
+                      </span>
+                     </div>
+                  </div>
+                  <div class="form-group form-group-bt">
+                    <button class="can-ch-bt dsk-mode" (click)="clear()">CANCEL</button>
+                    <button class="bg_primary" (click)="changePassword()">SUBMIT</button>
+
+                  </div>
+            </form>
+            </div>
+          </div>
+    </div>
+</div>
