@@ -20,63 +20,10 @@ import { Utils } from '../utils/utils';
 export class DashboardComponent implements OnInit {
   confirmed = 'Loggedin Successfully';
   roles = '';
-  manaEx = false;
-  monitor = false;
-  isProduct = false;
-  activeExecutive = false;
-  activeView = false;
-  activeProduct = false;
-  showProfile = true;
+
   confirm = false;
-  constructor(
-    private service: SharedService,
-    private router: Router,
-    private authService: AuthService,
-    private eRef: ElementRef,
-    private renderer: Renderer2
-  ) {
-    const previousRoute = this.router
-      .getCurrentNavigation()
-      .previousNavigation?.finalUrl?.toString();
-    if (previousRoute == '/' || previousRoute == '/user') {
-      // this.service.setPopup({
-      //   status: true,
-      //   top: '90px',
-      //   right: '153px',
-      //   message: 'Login Successful',
-      // });
-      this.confirm = true;
-      setTimeout(() => {
-        // this.service.setPopup({ status: false });
-        this.confirm = false;
-      }, 3000);
-    }
+  constructor(private authService: AuthService) {}
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.activeExecutive = event.url.includes('executive');
-        this.activeView = event.url.includes('monitor');
-        this.activeProduct = event.url.includes('products');
-      }
-    });
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const element = document.querySelectorAll('.nav-li');
-    element.forEach((obj: any) => {
-      const targetElement = obj.contains(event.target);
-      if (targetElement) {
-        if (obj.classList.contains('navactive')) {
-          this.renderer.removeClass(obj, 'navactive');
-        } else {
-          this.renderer.addClass(obj, 'navactive');
-        }
-      } else {
-        this.renderer.removeClass(obj, 'navactive');
-      }
-    });
-  }
   ngOnInit(): void {
     const token = this.authService.token;
     const splitedToken = Utils.parseJwt(token);

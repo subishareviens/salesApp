@@ -1,10 +1,8 @@
-<div class="bg">
-    <div class="brand">
-      <img src="../../../assets/images/brandlogo.png" alt="">
-    </div>
+<div class="login-home">  
+  <div class="bg">
     <div class="page">
-      <div class="brand-image">
-        <img src="../../../assets/images/brand-image.png" alt="">
+      <div class="brand">
+        <img src="../../../assets/images/brandlogo.png" alt="">
       </div>
         <div class="login" *ngIf="!showVerification">
             <div class="login-header">
@@ -15,86 +13,44 @@
                 Sales Executive
               </div>
             <form [formGroup]="loginUser">
-              <!-- <div class="form-alert" *ngIf="loginUser?.controls?.role?.status=='INVALID' && loginUser?.controls?.role?.touched==true ">
-                Role is required*
-            </div>
-                <div class="form-group mb-l">
-                    <select class="form-select" aria-label="" formControlName="role" (change)="hideField()">
-                        <option value="" disabled selected>Choose your role</option>
-                        <option value="Master admin" >Master admin</option>
-                        <option value="Sales executive">Sales executive</option>
-                      </select>
-                      
-                </div> -->
-                <!-- <div class="" *ngIf="loginUser?.get('role')?.value =='Sales executive'"> -->
-                  <div class="form-alert" *ngIf="loginUser?.controls?.phone?.status=='INVALID' && loginUser?.controls?.phone?.touched==true ">
-                  
-                    <div class="pnum" *ngIf="loginUser?.controls?.phone?.errors?.['required']">
-                      Phone number must be required
-                    </div>
-                    <div class="" *ngIf="loginUser?.controls?.phone?.errors?.['pattern']">
-                      Phone number must have 10 numbers
-                    </div>
-                 </div>
-                
-                      <div class="mb-l">
-                     
-                      <input type="number" class="form-control" id="phone" formControlName="phone" placeholder="Please enter your phone number"
-                      >
-                    </div>
-                  <!-- </div> -->
-                  <!-- <div class="" *ngIf="loginUser?.get('role')?.value =='Master admin'">
-                <div class="form-alert" *ngIf="loginUser?.controls?.email?.status=='INVALID' && loginUser?.controls?.email?.touched==true ">
-                  
-                  <div class="" *ngIf="loginUser?.controls?.email?.errors?.['required']">
-                    Email is required*
-                  </div>
-                  <div class="" *ngIf="loginUser?.controls?.email?.errors?.['pattern']">
-                    Enter email in correct form*
-                  </div>
-              </div>
                     <div class="mb-l">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" formControlName="email" required
-                    >
-                  </div>
-                  
-                
-                  <div class="form-alert" *ngIf="loginUser?.controls?.password?.status=='INVALID' && loginUser?.controls?.password?.touched==true ">
-                   
-                    <div class="" *ngIf="loginUser?.controls?.password?.errors?.['required']">
-                      Password is required*
+                    <input type="number" class="form-control" id="phone" formControlName="phone" placeholder="Please enter your phone number">
                     </div>
-                   
-                </div>
-                  <div class="mb-l ">
-                    <label for="password" class="form-label" >Password</label>
-                    <div class="show-password">
-                    <input type="{{showpassword ? 'password':'text'}}" class="form-control" id="password" formControlName="password" required pattern="">
-                    <span (click)="showPassword()">
-                      <img src="{{loginUser.controls.password.value ? '../../../assets/images/eye-off.png' : '../../../assets/images/eyeblur.png'}}" >
-                    </span>
-  
-                  </div>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="savecred" formControlName="credential">
-                    <label class="form-check-label" for="savecred">
-                      Save credentials
-                    </label>
-                  </div>
-                </div> -->
+                    <div class="form-alert" *ngIf="loginUser?.controls?.phone?.status=='INVALID' && loginUser?.controls?.phone?.touched==true ">
+                  
+                      <div class="pnum" *ngIf="loginUser?.controls?.phone?.errors?.['required']">
+                        * Phone number must be required
+                      </div>
+                      <div class="" *ngIf="loginUser?.controls?.phone?.errors?.['pattern']">
+                        * Phone number must have 10 numbers
+                      </div>
+                   </div>
                   <div  class="login-bt" >
                     <button type="submit" (click)="getUserLogin()" [ngClass]="{'disabled' : loginUser.status=='INVALID'}">LOGIN</button>
                   </div>
-                
             </form>
             <div class="form-alert error-message" *ngIf="error">
               {{errorMessage}}{{successMessage}}
             </div>
         </div>
+        <div class="fashion_text">
+          <span></span>
+          <p >Fashion is part of the daily air and it changes all the time, with all the events.</p>
+        </div>
         <app-verification class="mob-width" *ngIf="showVerification" [login]="(login)" [showVerification]="showVerification"></app-verification>
     </div>
+   </div>
+    <div class="text">
+      <p >
+        Discover New
+        <br>
+        Collection
+      </p>
+    </div>
+    <span class="screen-img">
+      <img src="../../../assets/images/sales-login-image.png">
+    </span>
+  </div>
   
   
   
